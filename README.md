@@ -36,3 +36,7 @@ BenchmarkOnceStructAllocation/Try_10,000,000_times-4           1        74289800
 PASS
 ok      bench-go/malloc 84.684s
 ```
+
+# Reference
+* [go/walk.go at go1.13.5 · golang/go](https://github.com/golang/go/blob/go1.13.5/src/cmd/compile/internal/gc/walk.go#L2585)
+* [go/slice.go at release-branch.go1.13 · golang/go](https://github.com/golang/go/blob/release-branch.go1.13/src/runtime/slice.go#L76)
