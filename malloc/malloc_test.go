@@ -48,9 +48,12 @@ func BenchmarkEveryStringAllocation(b *testing.B) {
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
 			b.ResetTimer()
+			c := 0
 			for i := 0; i < b.N; i++ {
-				everyStringAllocation(tt.args.count)
+				got := everyStringAllocation(tt.args.count)
+				c += got
 			}
+			b.Logf("result of %d times: cap avg = %d", tt.args.count, c/b.N)
 		})
 	}
 }
@@ -59,9 +62,12 @@ func BenchmarkOnceStringAllocation(b *testing.B) {
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
 			b.ResetTimer()
+			c := 0
 			for i := 0; i < b.N; i++ {
-				onceStringAllocation(tt.args.count)
+				got := onceStringAllocation(tt.args.count)
+				c += got
 			}
+			b.Logf("result of %d times: cap avg = %d", tt.args.count, c/b.N)
 		})
 	}
 }
@@ -70,9 +76,12 @@ func BenchmarkEveryStructAllocation(b *testing.B) {
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
 			b.ResetTimer()
+			c := 0
 			for i := 0; i < b.N; i++ {
-				everyStructAllocation(tt.args.count)
+				got := everyStructAllocation(tt.args.count)
+				c += got
 			}
+			b.Logf("result of %d times: cap avg = %d", tt.args.count, c/b.N)
 		})
 	}
 }
@@ -81,9 +90,12 @@ func BenchmarkOnceStructAllocation(b *testing.B) {
 	for _, tt := range tests {
 		b.Run(tt.name, func(b *testing.B) {
 			b.ResetTimer()
+			c := 0
 			for i := 0; i < b.N; i++ {
-				onceStructAllocation(tt.args.count)
+				got := onceStructAllocation(tt.args.count)
+				c += got
 			}
+			b.Logf("result of %d times: cap avg = %d", tt.args.count, c/b.N)
 		})
 	}
 }

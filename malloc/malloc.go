@@ -5,18 +5,20 @@ import (
 	"strconv"
 )
 
-func everyStringAllocation(count int) {
+func everyStringAllocation(count int) int {
 	var base []string
 	for i := 0; i < count; i++ {
 		base = append(base, fmt.Sprintf("%d", i))
 	}
+	return cap(base)
 }
 
-func onceStringAllocation(count int) {
+func onceStringAllocation(count int) int {
 	base := make([]string, count)
 	for i := 0; i < count; i++ {
 		base[i] = fmt.Sprintf("%d", i)
 	}
+	return cap(base)
 }
 
 type child struct {
@@ -66,16 +68,18 @@ func makeParent(id int) *parent {
 	}
 }
 
-func everyStructAllocation(count int) {
+func everyStructAllocation(count int) int {
 	var base []*parent
 	for i := 0; i < count; i++ {
 		base = append(base, makeParent(i))
 	}
+	return cap(base)
 }
 
-func onceStructAllocation(count int) {
+func onceStructAllocation(count int) int {
 	base := make([]*parent, count)
 	for i := 0; i < count; i++ {
 		base[i] = makeParent(i)
 	}
+	return cap(base)
 }
